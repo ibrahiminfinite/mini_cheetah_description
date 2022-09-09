@@ -9,17 +9,15 @@
         <xacro:property name="rpy" value="$(arg rpy)"/>
 
         <xacro:property name="torso_mass" value="3.3"/>
-        <xacro:property name="x_length" value="0.0"/>
-        <xacro:property name="y_length" value="0.0"/>
-        <xacro:property name="z_length" value="0.0"/>
+        <xacro:property name="x_length" value="0.3"/>
+        <xacro:property name="y_length" value="0.2"/>
+        <xacro:property name="z_length" value="0.093"/>
 
         <xacro:property name="ixx" value="${(1/12) * torso_mass * (y_length * y_length + z_length * z_length)}"/>
         <xacro:property name="iyy" value="${(1/12) * torso_mass * (x_length * x_length + z_length * z_length)}"/>
         <xacro:property name="izz" value="${(1/12) * torso_mass * (x_length * x_length + y_length * y_length)}"/>
 
-        <!-- <xacro:property name="torso_uri" value="package://mini_cheetah_description/meshes/body.STL"/> -->
-
-        <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+        <material name="cheetah_black"><color rgba="0.15 0.15 0.15 1.0" /></material>
 
         <link name="torso">
             <visual>
@@ -27,14 +25,13 @@
                 <geometry>
                     <box size="${x_length} ${y_length} ${z_length}"/>
                 </geometry>
-                <material name="black"/>
+                <material name="cheetah_black"/>
             </visual>
             <collision>
                 <origin xyz="${xyz}" rpy="${rpy}"/>
                 <geometry>
                     <box size="${x_length} ${y_length} ${z_length}"/>
                 </geometry>
-                <material name="black"/>
             </collision>
             <inertial>
                 <mass value="${torso_mass}"/>
