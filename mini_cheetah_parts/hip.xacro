@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xaro">
+    <xacro:macro name="hip" params="postfix xyz rpy">
+
+        <xacro:arg name="xyz" default="0 0 0"/>
+        <xacro:property name="xyz" value="$(arg xyz)"/>
+
+        <xacro:arg name="rpy" default="0 0 0"/>
+        <xacro:property name="rpy" value="$(arg rpy)"/>
+
+        <xacro:arg name="postfix" default="__"/>
+        <xacro:property name="postfix" value="$(arg postfix)"/>
+
+        <link name="hip">
+            <visual>
+                <origin xyx="${xyz}"  rpy="${rpy}"/>
+                <geometry>
+                    <sphere radius="0.15"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyx="${xyz}"  rpy="${rpy}"/>
+                <geometry>
+                    <sphere radius="0.15"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="0.15"/>
+                <inertia ixx="0.000381" ixy="0.000058" ixz="0.00000045" iyy="0.000560" iyz="0.00000095" izz="0.000444"/>
+            </inertial>
+        </link>
+
+    </xacro:macro>
+</robot>

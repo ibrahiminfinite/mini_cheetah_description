@@ -4,8 +4,14 @@
     <xacro:arg name="name" default="mini_cheetah"/>
     <xacro:property name="robot_namespace" value="$(arg name)"/>
 
-    <!-- (find mini_cheetah_description)/mini_cheetah_parts/ -->
     <xacro:include filename="mini_cheetah_parts/torso.xacro"/>
     <xacro:torso xyz="0 0 0" rpy="0 0 0"/>
-
+    <joint name="torso_to_abduct_fr_j" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="0.19 -0.049 0.0"/>
+        <parent link="torso"/>
+        <child link="hip"/>
+    </joint>
+    <xacro:include filename="mini_cheetah_parts/hip.xacro"/>
+    <xacro:hip postfix="fr" xyz="0 0 0" rpy="0 0 0"/>
 </robot>
