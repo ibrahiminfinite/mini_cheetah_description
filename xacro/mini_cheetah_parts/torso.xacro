@@ -2,6 +2,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:macro name="torso" params="xyz rpy">
 
+        <xacro:property name="torso_mesh_path" value="meshes/body.STL"/>
+        
         <xacro:arg name="xyz" default="0 0 0"/>
         <xacro:property name="xyz" value="$(arg xyz)"/>
         
@@ -9,13 +11,7 @@
         <xacro:property name="rpy" value="$(arg rpy)"/>
 
         <xacro:property name="torso_mass" value="3.3"/>
-        <xacro:property name="x_length" value="0.3"/>
-        <xacro:property name="y_length" value="0.2"/>
-        <xacro:property name="z_length" value="0.093"/>
 
-        <xacro:property name="ixx" value="${(1/12) * torso_mass * (y_length * y_length + z_length * z_length)}"/>
-        <xacro:property name="iyy" value="${(1/12) * torso_mass * (x_length * x_length + z_length * z_length)}"/>
-        <xacro:property name="izz" value="${(1/12) * torso_mass * (x_length * x_length + y_length * y_length)}"/>
 
         <material name="cheetah_black"><color rgba="0.15 0.15 0.15 1.0" /></material>
 
@@ -23,20 +19,20 @@
             <visual>
                 <origin xyz="${xyz}" rpy="${rpy}"/>
                 <geometry>
-                    <box size="${x_length} ${y_length} ${z_length}"/>
+                    <mesh filename="${torso_mesh_path}"/>
                 </geometry>
                 <material name="cheetah_black"/>
             </visual>
             <collision>
                 <origin xyz="${xyz}" rpy="${rpy}"/>
                 <geometry>
-                    <box size="${x_length} ${y_length} ${z_length}"/>
+                    <mesh filename="${torso_mesh_path}"/>
                 </geometry>
             </collision>
             <inertial>
                 <mass value="${torso_mass}"/>
                 <origin xyz="${xyz}"/>
-                <inertia ixx="${ixx}" ixy="0.0" ixz="0.0" iyy="${iyy}" iyz="0.0" izz="${izz}" />
+                <inertia ixx="0.011253" ixy="0" ixz="0" iyy="0.036203" iyz="0" izz="0.042673"/>
             </inertial>
         </link>
 

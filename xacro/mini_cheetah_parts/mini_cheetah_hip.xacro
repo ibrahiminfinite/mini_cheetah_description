@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xaro">
+    <xacro:macro name="hip" params="postfix xyz rpy">
+
+    <xacro:arg name="xyz" default="0 0 0"/>
+    <xacro:property name="xyz" value="$(arg xyz)"/>
+
+    <xacro:arg name="rpy" default="0 0 0"/>
+    <xacro:property name="rpy" value="$(arg rpy)"/>
+
+    <link name="h"
